@@ -2,6 +2,7 @@
 class EnviromentalInterface:
 
     # programming enviroment
+    @staticmethod
     def Interface(self):
         instructions=[]
         while True:
