@@ -1,3 +1,3 @@
-*TO DO*
+#TO DO
 
-1. Add DAT instruction
+**1. Add DAT instruction**
