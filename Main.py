@@ -1,5 +1,6 @@
 from CPU import CPU
 from AssemblyManager import AssemblyManager
+from EnviromentalInterface import EnviromentalInterface
 
 
 
