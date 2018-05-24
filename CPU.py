@@ -3,54 +3,73 @@ from Memory import Memory
 class CPU: # CPU class
 
 
-    def __init__(self,):
-        self.memory=Memory() # main memory object
-        self.pc=0 # program counter
-        self.accumulator=0 # accumulator
+    # initialisation
+    def __init__(self):
+        # main memory object
+        self.memory=Memory()
+        # program counter
+        self.pc=0
+        # accumulator
+        self.accumulator=0
 
     def ex0x001(self,data): # HALT INSTRUCTION
         print("Halting Program")
-        self.pc=-2 # the main loop will exit
+        # the main loop will exit
+        self.pc=-2
 
     def ex0x002(self,loc): # ADD
         print("Adding location {}".format(loc))
-        self.accumulator+=self.memory.GetCellVal(loc) # adding data to accumulator
+        # adding data at specified memory location to accumulator
+        self.accumulator+=self.memory.GetCellVal(loc)
 
     def ex0x003(self,loc): # SUBTRACT
         print("Subtracting location {}".format(loc))
-        self.accumulator -= int(self.memory.GetCellVal(loc), 0)  # subtracting data to accumulator
+        # subtracting data at specified location to accumulator
+        self.accumulator -= int(self.memory.GetCellVal(loc), 0)
 
     def ex0x004(self,loc): # STORE
         print("Storing at location {}".format(loc))
+        # storing accumulator value at specified memory location
         self.memory.SetCellVal(self.accumulator,loc)
 
     def ex0x005(self,loc): # LOAD
         print("Loading location {}".format(loc))
+        # loading value at specified memory location to accumulator
         self.accumulator=self.memory.GetCellVal(loc)
 
     def ex0x006(self,data): # INPUT
-        val=int(input("I/O {input}: "))
-        self.accumulator=val
+        # setting accumulator value to user input
+        self.accumulator=int(input("I/O {input}: "))
 
     def ex0x007(self,data): # OUTPUT
+        # outputting accumulator value to the console
         print("OUT: "+str(self.accumulator))
 
     def ex0x008(self,loc): # BRANCH
+        print("Branching to {}".format(loc))
+        # setting the program counter to the specified location
+        # NOTE -1 required as the pc counter is incremented at the end of the loop and so is updated before the next instruction can run
         self.pc=int(loc,0)-1
-        print("Branching to {}".format(self.pc))
+        
 
     def ex0x009(self,loc): # BRANCH IF POSITIVE
+        #checking if the accumulator is positive
         if self.accumulator % 2 == 0:
+            # if so, set the pc value to the specified value
             self.pc=int(loc,0)-1
             print("Branching to {}".format(self.pc))
         else:
+            # if not, pass
             pass
 
     def ex0x010(self,loc): # BRANCH IF ZERO
+        # checking if the accumulator is 0
         if self.accumulator == 0:
+            # if so, set the pc value to the specified value
             self.pc=int(loc,0)-1
             print("Branching to {}".format(self.pc))
         else:
+            # if not, pass
             pass
 
 
