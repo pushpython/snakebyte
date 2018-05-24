@@ -3,7 +3,7 @@ class EnviromentalInterface:
 
     # programming enviroment
     @staticmethod
-    def Interface(self):
+    def Interface():
         instructions=[]
         while True:
             console_input=input(">")
