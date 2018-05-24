@@ -75,17 +75,11 @@ class CPU: # CPU class
 
 
     def Execute(self):
-
-        hexToExecutor={"0x001":self.ex0x001, # corresponding opcode execution functions
-                      "0x002":self.ex0x002,
-                      "0x003":self.ex0x003,
-                      "0x004":self.ex0x004,
-                      "0x005":self.ex0x005,
-                      "0x006":self.ex0x006,
-                      "0x007":self.ex0x007,
-                      "0x008": self.ex0x008,
-                      "0x009": self.ex0x009,
-                      "0x010": self.ex0x010,}
+        # corresponding opcode execution functions
+        
+        hexToExecutor={"0x001":self.ex0x001, "0x002":self.ex0x002, "0x003":self.ex0x003, "0x004":self.ex0x004, "0x005":self.ex0x005,
+                      "0x006":self.ex0x006,"0x007":self.ex0x007,"0x008": self.ex0x008,"0x009": self.ex0x009,"0x010": self.ex0x010,}
+        
         # to execute do instructions.get("HLT")(params here)
         while self.pc > -1 and self.pc < len(self.memory.cells): # main exection loop
 
