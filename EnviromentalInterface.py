@@ -2,7 +2,7 @@
 class EnviromentalInterface:
 
     # programming enviroment
-    def EnviromentInterface(self):
+    def Interface(self):
         instructions=[]
         while True:
             console_input=input(">")
