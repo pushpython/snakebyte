@@ -1,3 +1,5 @@
+
+
 class AssemblyManager:
     def __init__(self):
         self.assembly_dictionary = \
@@ -13,22 +15,26 @@ class AssemblyManager:
                          "BRZ": self.brz}
 
     def ParseAssembly(self,assembly):
+        instruction=None
         intermediate=[]
-        error=None
+        errors=[]
         for i in range(len(assembly)):
-            try:
-                instruction=assembly[i].split()[0]
+            instruction=assembly[i].split()[0]
+            self.assembly_dictionary.get(instruction)
+            
+            try:data=assembly[i].split()[1]
+            except:data=None
+            
+            try:intermediate.append((self.assembly_dictionary.get(instruction)(hex(i),data))) # executing the relevant instruction and passing the memory location
+
             except:
-                error="Incorect syntax on line {}".format(i)
-            try:
-                data=assembly[i].split()[1]
-            except:
-                data=None
-            intermediate.append((self.assembly_dictionary.get(instruction)(hex(i),data))) # executing the relevant instruction and passing the memory location
-        if error != None:
+                errors.append("Incorect syntax on line {}".format(i))
+            
+        if len(errors) == 0:
             return intermediate
         else:
-            print(error)
+            print("Errors: {}".format(errors))
+            return
 
     def hlt(self,location,val):
         address="0x001"
