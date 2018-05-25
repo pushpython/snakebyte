@@ -14,15 +14,21 @@ class AssemblyManager:
 
     def ParseAssembly(self,assembly):
         intermediate=[]
+        error=None
         for i in range(len(assembly)):
-            instruction=assembly[i].split()[0]
+            try:
+                instruction=assembly[i].split()[0]
+            except:
+                error="Incorect syntax on line {}".format(i)
             try:
                 data=assembly[i].split()[1]
             except:
                 data=None
             intermediate.append((self.assembly_dictionary.get(instruction)(hex(i),data))) # executing the relevant instruction and passing the memory location
-
-        return intermediate
+        if error != None:
+            return intermediate
+        else:
+            print(error)
 
     def hlt(self,location,val):
         address="0x001"
