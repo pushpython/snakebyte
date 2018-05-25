@@ -1,6 +1,7 @@
 from Memory import Memory
 
-class CPU: # CPU class
+# CPU class
+class CPU:
 
 
     # Initialisation
