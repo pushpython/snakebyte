@@ -6,7 +6,7 @@ class AssemblyManager:
                          "SUB": self.sub,
                          "STA": self.sta,
                          "LDA": self.lda,
-                         "INP":  self.inp,
+                         "INP": self.inp,
                          "OUT": self.out,
                          "BRA": self.bra,
                          "BRP": self.brp,
