@@ -2,8 +2,6 @@ from CPU import CPU
 from AssemblyManager import AssemblyManager
 from EnviromentalInterface import EnviromentalInterface
 
-
-
 # Main CPU object
 cpu=CPU()
 # Main assembley manager object
