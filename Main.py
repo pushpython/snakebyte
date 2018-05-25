@@ -4,15 +4,23 @@ from EnviromentalInterface import EnviromentalInterface
 
 
 
+# Main CPU object
+cpu=CPU()
+# Main assembley manager object
+assemblyManager=AssemblyManager()
 
-cpu=CPU() # main CPU object
-assemblyManager=AssemblyManager() # main assembley manager object
-
-cpu.memory.SetCellVal(0x001,"0x013") # setting cell 19 to 1
-
-assembly=EnviromentalInterface.Interface()
-
-instructions=assemblyManager.ParseAssembly(assembly) # parsing assembly to hex with memory location
-cpu.memory.LoadInstructions(instructions) # loading instructions into memory
-cpu.Execute()
+# Main loops, isn't nessescary for running program
+while True:
+    # Getting array of assembly instructions from the console
+    assembly=EnviromentalInterface.Interface()
+    # Parsing assembly to hex with memory location
+    instructions=assemblyManager.ParseAssembly(assembly)
+    # If there is an error in the instructions, loop again
+    if instructions == None: pass
+    # If no errors...
+    else:
+        # Loading instructions into memory
+        cpu.memory.LoadInstructions(instructions)
+        # Execute the program
+        cpu.Execute()
 
