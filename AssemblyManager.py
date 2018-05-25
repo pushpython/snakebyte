@@ -20,7 +20,7 @@ class AssemblyManager:
                 data=assembly[i].split()[1]
             except:
                 data=None
-            intermediate.append(self.assembly_dictionary.get(instruction)(hex(i),data)) # executing the relevant instruction and passing the memory location
+            intermediate.append((self.assembly_dictionary.get(instruction)(hex(i),data))) # executing the relevant instruction and passing the memory location
 
         return intermediate
 
