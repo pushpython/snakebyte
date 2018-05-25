@@ -47,7 +47,8 @@ class AssemblyManager:
         if len(errors) == 0:return intermediate
         
         # If there are errors in the array, return nothing 
-        else:print("Errors: {}".format(errors))
+        else:
+            print("Errors: {}".format(errors))
             return
 
     # Function to return hex neuomic and memory address for HLT
