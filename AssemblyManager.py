@@ -1,8 +1,8 @@
 
 
 class AssemblyManager:
-    def __init__(self):
-        self.assembly_dictionary = \
+    def __init__(self): # Initialisation
+        self.assembly_dictionary = \ # Dictionary containing keys for ASSEMBLY instructions & corresponding functions
                         {"HLT": self.hlt,
                          "ADD": self.add,
                          "SUB": self.sub,
@@ -14,7 +14,7 @@ class AssemblyManager:
                          "BRP": self.brp,
                          "BRZ": self.brz}
 
-    def ParseAssembly(self,assembly):
+    def ParseAssembly(self,assembly): # Function 
         instruction=None
         intermediate=[]
         errors=[]
