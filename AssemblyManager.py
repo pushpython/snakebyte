@@ -1,8 +1,11 @@
 
 
 class AssemblyManager:
-    def __init__(self): # Initialisation
-        self.assembly_dictionary = \ # Dictionary containing keys for ASSEMBLY instructions & corresponding functions
+    
+    # Initialisation
+    def __init__(self):
+        # Dictionary containing keys for ASSEMBLY instructions & corresponding functions
+        self.assembly_dictionary = \
                         {"HLT": self.hlt,
                          "ADD": self.add,
                          "SUB": self.sub,
@@ -13,22 +16,32 @@ class AssemblyManager:
                          "BRA": self.bra,
                          "BRP": self.brp,
                          "BRZ": self.brz}
-
-    def ParseAssembly(self,assembly): # Function 
-        instruction=None
-        intermediate=[]
-        errors=[]
-        for i in range(len(assembly)):
-            instruction=assembly[i].split()[0]
-            self.assembly_dictionary.get(instruction)
             
+    # Function to parse assembly into hex opcodes with corresponding memory locations (returns tuple array)
+    def ParseAssembly(self,assembly):
+        # initialising the instructor function to None for error handling further down
+        instruction=None
+        # Irray containing the tuples
+        intermediate=[]
+        # Array containing syntax errors
+        errors=[]
+        # Looping through each Assembly instruction
+        for i in range(len(assembly)):
+            # Getting the instructioj opcode (Excluding additional data)
+            instruction=assembly[i].split()[0]
+            
+           # NOT SURE IF THIS IS NEEDED self.assembly_dictionary.get(instruction)
+            
+            # Trying to get data from the instruction
             try:data=assembly[i].split()[1]
+            # If there is no data, set data to None
             except:data=None
             
+            # Try to return the hex tuple and append it to the intermediate array
             try:intermediate.append((self.assembly_dictionary.get(instruction)(hex(i),data))) # executing the relevant instruction and passing the memory location
-
-            except:
-                errors.append("Incorect syntax on line {}".format(i))
+            
+            # If the instruction is incoreect or if there is an error, append errors with the error on line i
+            except:errors.append("Incorect syntax on line {}".format(i))
             
         if len(errors) == 0:
             return intermediate
