@@ -42,41 +42,47 @@ class AssemblyManager:
             
             # If the instruction is incoreect or if there is an error, append errors with the error on line i
             except:errors.append("Incorect syntax on line {}".format(i))
-            
-        if len(errors) == 0:
-            return intermediate
-        else:
-            print("Errors: {}".format(errors))
+        
+        # If there are no errors in the error array, return the intermediate array
+        if len(errors) == 0:return intermediate
+        
+        # If there are errors in the array, return nothing 
+        else:print("Errors: {}".format(errors))
             return
 
+    # Function to return hex neuomic and memory address for HLT
     def hlt(self,location,val):
         address="0x001"
         if val==None:
             return (address, location)
         else:
             return (address+str(val),location)
-
+    
+    # Function to return hex neuomic and memory address for ADD
     def add(self,location,val):
         address="0x002"
         if val==None:
             return (address, location)
         else:
             return (address+str(val),location)
-
+    
+    # Function to return hex neuomic and memory address for SUB
     def sub(self,location,val):
         address="0x003"
         if val==None:
             return (address, location)
         else:
             return (address+str(val),location)
-
+    
+    # Function to return hex neuomic and memory address for STA
     def sta(self,location,val):
         address="0x004"
         if val==None:
             return (address, location)
         else:
             return (address+str(val),location)
-
+    
+    # Function to return hex neuomic and memory address for LDA
     def lda(self,location,val):
         address="0x005"
         if val==None:
@@ -84,34 +90,39 @@ class AssemblyManager:
         else:
             return (address+str(val),location)
 
+    # Function to return hex neuomic and memory address for INP
     def inp(self,location,val):
         address="0x006"
         if val==None:
             return (address, location)
         else:
             return (address+str(val),location)
-
+    
+    # Function to return hex neuomic and memory address for OUT
     def out(self,location,val):
         address="0x007"
         if val==None:
             return (address, location)
         else:
             return (address+str(val),location)
-
+    
+    # Function to return hex neuomic and memory address for BRA
     def bra(self,location,val):
         address="0x008"
         if val==None:
             return (address,location)
         else:
             return (address+str(val),location)
-
+    
+    # Function to return hex neuomic and memory address for BRP
     def brp(self,location,val):
         address="0x009"
         if val==None:
             return (address,location)
         else:
             return (address+str(val),location)
-
+    
+    # Function to return hex neuomic and memory address for BRZ
     def brz(self,location,val):
         address="0x010"
         if val==None:
