@@ -128,10 +128,8 @@ class CPU:
 
             # Trying to execute operation with data
             try:hexToExecutor.get(opcode)(data)
-            # If errors returned, pass
-            except:
-                print("UGHHH {}".format(opcode))
-                pass
+            # If errors returned, debug and pass
+            except:print("Couldnt Execute {} with data {}".format(opcode,data))
             
             # Incrementing program counter
             self.pc += 1 
