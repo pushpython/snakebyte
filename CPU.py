@@ -83,6 +83,29 @@ class CPU:
             # if not, pass
             pass
 
+    # AND
+    def ex0x011(self,loc):
+        # checking if the accumulator is 0 (False) and the memory location value is 0 (False)
+        if bool(self.accumulator) != False and bool(self.memory.GetCellVal(loc)) != False:
+            self.accumulator = 1
+        else:
+            self.accumulator = 0
+
+    # OR
+    def ex0x012(self,loc):
+        # checking if the accumulator is 0 (False) or the memory location value is 0 (False)
+        if bool(self.accumulator) != False or bool(self.memory.GetCellVal(loc)) != False:
+            self.accumulator = 1
+        else:
+            self.accumulator = 0
+
+    # XOR
+    def ex0x013(self,loc):
+        # checking if the accumulator is 0 or the memory location value is 0 exclusively
+        if bool(self.accumulator) != bool(self.memory.GetCellVal(loc)):
+            self.accumulator = 1
+        else:
+            self.accumulator = 0
 
 
     # Function to execute the program
@@ -90,7 +113,8 @@ class CPU:
         
         # Corresponding opcode execution functions (Note this excludes additional data)   
         hexToExecutor={"0x001":self.ex0x001, "0x002":self.ex0x002, "0x003":self.ex0x003, "0x004":self.ex0x004, "0x005":self.ex0x005,
-                      "0x006":self.ex0x006,"0x007":self.ex0x007,"0x008": self.ex0x008,"0x009": self.ex0x009,"0x010": self.ex0x010,}
+                       "0x006":self.ex0x006,"0x007":self.ex0x007,"0x008": self.ex0x008,"0x009": self.ex0x009,"0x010": self.ex0x010,
+                       "0x011":self.ex0x011,"0x012":self.ex0x012,"0x013":self.ex0x013}
         
         # Main loop to execute each instruction
         while self.pc > -1 and self.pc < len(self.memory.cells):
@@ -101,11 +125,13 @@ class CPU:
             opcode=instruction[0:5]
             # Getting 4 bit data value (If specified)
             data=instruction[5:9]
-            
+
             # Trying to execute operation with data
             try:hexToExecutor.get(opcode)(data)
             # If errors returned, pass
-            except:pass
+            except:
+                print("UGHHH {}".format(opcode))
+                pass
             
             # Incrementing program counter
             self.pc += 1 
