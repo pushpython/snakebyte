@@ -15,7 +15,11 @@ class AssemblyManager:
                          "OUT": self.out,
                          "BRA": self.bra,
                          "BRP": self.brp,
-                         "BRZ": self.brz}
+                         "BRZ": self.brz,
+
+                         "AND": self.land, # logical and
+                         "OR" : self.lor,  # logical or
+                         "XOR": self.lxor} # logical xor
             
     # Function to parse assembly into hex opcodes with corresponding memory locations (returns tuple array)
     def ParseAssembly(self,assembly):
@@ -130,3 +134,36 @@ class AssemblyManager:
             return (address,location)
         else:
             return (address+str(val),location)
+
+    # Function to return hex neuomic and memory address for AND
+    def land(self,location,val):
+        address="0x011"
+        if val==None:
+            return (address,location)
+        else:
+            return (address+str(val),location)
+
+    # Function to return hex neuomic and memory address for OR
+    def lor(self,location,val):
+        address="0x012"
+        if val==None:
+            return (address,location)
+        else:
+            return (address+str(val),location)
+
+    # Function to return hex neuomic and memory address for XOR
+    def lxor(self,location,val):
+        address="0x013"
+        if val==None:
+            return (address,location)
+        else:
+            return (address+str(val),location)
+
+
+
+        
+
+
+
+
+        
