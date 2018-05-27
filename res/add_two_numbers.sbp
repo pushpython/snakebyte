@@ -1,0 +1,6 @@
+INP
+STA 9
+INP
+ADD 9
+OUT
+HLT
